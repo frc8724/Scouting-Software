@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Form Example</title>
+</head>
+<body>
+    <h1>Offline Form</h1>
+    <form id="dataForm">
+        <label for="teamColor">Team Color:</label>
+        <label><input type="radio" name="teamColor" value="blue1" required>Blue 1</label>
+        <label><input type="radio" name="teamColor" value="blue2">Blue 2</label>
+        <label><input type="radio" name="teamColor" value="blue3">Blue 3</label>
+        <label><input type="radio" name="teamColor" value="red1">Red 1</label>
+        <label><input type="radio" name="teamColor" value="red2">Red 2</label>
+        <label><input type="radio" name="teamColor" value="red3">Red 3</label>
+        <br><br>
+        <label for="team">Team (0-9999):</label>
+        <input type="number" id="team" min="0" max="9999" required>
+        <br><br>
+        <h2>Auto</h2>
+        <label><input type="radio" name="start_pos" value="flat" required>Flat</label>
+        <label><input type="radio" name="start_pos" value="bump">Bump</label>
+        <label><input type="radio" name="start_pos" value="charge">Charge</label>
+        <label><input type="radio" name="start_pos" value="other">Other</label>
+        <br><br>
+        <h2>Scoring</h2>
+        <label>Cone High:</label>
+        <label><input type="radio" name="cone_high" value="0" required checked>0</label>
+        <label><input type="radio" name="cone_high" value="1">1</label>
+        <label><input type="radio" name="cone_high" value="2">2</label>
+        <label><input type="radio" name="cone_high" value="3">3</label>
+        <br><br>
+        <label>Cone Mid:</label>
+        <label><input type="radio" name="cone_mid" value="0" required checked>0</label>
+        <label><input type="radio" name="cone_mid" value="1">1</label>
+        <label><input type="radio" name="cone_mid" value="2">2</label>
+        <label><input type="radio" name="cone_mid" value="3">3</label>
+        <br><br>
+        <label>Cone Low:</label>
+        <label><input type="radio" name="cone_low" value="0" required checked>0</label>
+        <label><input type="radio" name="cone_low" value="1">1</label>
+        <label><input type="radio" name="cone_low" value="2">2</label>
+        <label><input type="radio" name="cone_low" value="3">3</label>
+        <br><br>
+        <label>Cube High:</label>
+        <label><input type="radio" name="cube_high" value="0" required checked>0</label>
+        <label><input type="radio" name="cube_high" value="1">1</label>
+        <label><input type="radio" name="cube_high" value="2">2</label>
+        <label><input type="radio" name="cube_high" value="3">3</label>
+        <br><br>
+        <label>Cube Mid:</label>
+        <label><input type="radio" name="cube_mid" value="0" required checked>0</label>
+        <label><input type="radio" name="cube_mid" value="1">1</label>
+        <label><input type="radio" name="cube_mid" value="2">2</label>
+        <label><input type="radio" name="cube_mid" value="3">3</label>
+        <br><br>
+        <label>Cube Low:</label>
+        <label><input type="radio" name="cube_low" value="0" required checked>0</label>
+        <label><input type="radio" name="cube_low" value="1">1</label>
+        <label><input type="radio" name="cube_low" value="2">2</label>
+        <label><input type="radio" name="cube_low" value="3">3</label>
+        <br><br>
+        <label>Mobility:</label>
+        <label><input type="radio" name="mobility" value="yes" required>Yes</label>
+        <label><input type="radio" name="mobility" value="no">No</label>
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <a href="#" id="downloadLink" style="display: true;">Download Form Data</a>
+    <div id="formEntries"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
