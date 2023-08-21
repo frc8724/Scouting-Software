@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Store the updated list in localStorage
         localStorage.setItem('formDataList', JSON.stringify(existingData));
     }
+    
 
     function updateFormEntries() {
         const formDataList = JSON.parse(localStorage.getItem('formDataList'));
