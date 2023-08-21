@@ -16,8 +16,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const cubeLow = parseInt(document.querySelector('input[name="cube_low"]:checked').value);
         const mobility = document.querySelector('input[name="mobility"]:checked').value;
 
+        // Checkboxes for Cone Intake
+        const coneIntakeCheckboxes = document.querySelectorAll('input[name="cone_intake"]:checked');
+        const coneIntake = Array.from(coneIntakeCheckboxes).map(checkbox => checkbox.value);
+
+        // Checkboxes for Cube Intake
+        const cubeIntakeCheckboxes = document.querySelectorAll('input[name="cube_intake"]:checked');
+        const cubeIntake = Array.from(cubeIntakeCheckboxes).map(checkbox => checkbox.value);
+
         // Save the data in localStorage
-        saveDataLocally(teamColor, team, startPos, coneHigh, coneMid, coneLow, cubeHigh, cubeMid, cubeLow, mobility);
+        saveDataLocally(teamColor, team, startPos, coneHigh, coneMid, coneLow, cubeHigh, cubeMid, cubeLow, mobility, coneIntake, cubeIntake);
 
         // Clear form fields after submission
         form.reset();
@@ -26,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateFormEntries();
     });
 
-    function saveDataLocally(teamColor, team, startPos, coneHigh, coneMid, coneLow, cubeHigh, cubeMid, cubeLow, mobility) {
+    function saveDataLocally(teamColor, team, startPos, coneHigh, coneMid, coneLow, cubeHigh, cubeMid, cubeLow, mobility, coneIntake, cubeIntake) {
         const formData = {
             teamColor,
             team,
@@ -37,7 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
             cubeHigh,
             cubeMid,
             cubeLow,
-            mobility
+            mobility,
+            coneIntake,
+            cubeIntake
         };
 
         // Check if data already exists in localStorage
@@ -50,33 +60,31 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('formDataList', JSON.stringify(existingData));
     }
 
-    function clearDataLocally() {
-        localStorage.removeItem('formDataList');
-    }
-
     function updateFormEntries() {
         const formDataList = JSON.parse(localStorage.getItem('formDataList'));
         if (formDataList && formDataList.length > 0) {
             formEntriesContainer.innerHTML = '<h2>Form Entries</h2>';
-            let tableHTML = '<table border="1"><tr><th>Team Color</th><th>Team</th><th>Start Position</th><th>Cone High</th><th>Cone Mid</th><th>Cone Low</th><th>Cube High</th><th>Cube Mid</th><th>Cube Low</th><th>Mobility</th></tr>';
+            let tableHTML = '<table border="1"><tr><th>Team Color</th><th>Team</th><th>Start Position</th><th>Cone High</th><th>Cone Mid</th><th>Cone Low</th><th>Cube High</th><th>Cube Mid</th><th>Cube Low</th><th>Mobility</th><th>Cone Intake</th><th>Cube Intake</th></tr>';
 
             formDataList.forEach(formData => {
-                tableHTML += `<tr><td>${formData.teamColor}</td><td>${formData.team}</td><td>${formData.startPos}</td><td>${formData.coneHigh}</td><td>${formData.coneMid}</td><td>${formData.coneLow}</td><td>${formData.cubeHigh}</td><td>${formData.cubeMid}</td><td>${formData.cubeLow}</td><td>${formData.mobility}</td></tr>`;
+                tableHTML += `<tr><td>${formData.teamColor}</td><td>${formData.team}</td><td>${formData.startPos}</td><td>${formData.coneHigh}</td><td>${formData.coneMid}</td><td>${formData.coneLow}</td><td>${formData.cubeHigh}</td><td>${formData.cubeMid}</td><td>${formData.cubeLow}</td><td>${formData.mobility}</td><td>${formData.coneIntake.join(', ')}</td></tr>${formData.cubeIntake.join(', ')}</td></tr>`;
             });
 
             tableHTML += '</table>';
             formEntriesContainer.innerHTML += tableHTML;
+
+            // Display the download link
+            downloadLink.style.display = 'block';
         }
     }
 
     function generateCSVContent() {
         const formDataList = JSON.parse(localStorage.getItem('formDataList'));
         if (formDataList && formDataList.length > 0) {
-            let csvContent = 'data:text/csv;charset=utf-8,';
-            csvContent += 'Team Color,Team,Start Position,Cone High,Cone Mid,Cone Low,Cube High,Cube Mid,Cube Low,Mobility\n';
+            let csvContent = 'Team Color,Team,Start Position,Cone High,Cone Mid,Cone Low,Cube High,Cube Mid,Cube Low,Mobility,Cone Intake,Cube Intake\n';
 
             formDataList.forEach(formData => {
-                csvContent += `${formData.teamColor},${formData.team},${formData.startPos},${formData.coneHigh},${formData.coneMid},${formData.coneLow},${formData.cubeHigh},${formData.cubeMid},${formData.cubeLow},${formData.mobility}\n`;
+                csvContent += `${formData.teamColor},${formData.team},${formData.startPos},${formData.coneHigh},${formData.coneMid},${formData.coneLow},${formData.cubeHigh},${formData.cubeMid},${formData.cubeLow},${formData.mobility},"${formData.coneIntake.join(', ')}","${formData.cubeIntake.join(', ')}"\n`;
             });
 
             return csvContent;
@@ -87,10 +95,21 @@ document.addEventListener('DOMContentLoaded', function () {
     function downloadCSV() {
         const csvContent = generateCSVContent();
         if (csvContent) {
-            const encodedUri = encodeURI(csvContent);
-            downloadLink.setAttribute('href', encodedUri);
-            downloadLink.setAttribute('download', 'form_data.csv');
-            downloadLink.style.display = 'block';
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'form_data.csv';
+            link.style.display = 'none';
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Clear the stored form data from local storage
+            localStorage.removeItem('formDataList');
+
+            // Update the form entries display after clearing
+            updateFormEntries();
         }
     }
 
@@ -98,7 +117,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     downloadLink.addEventListener('click', function () {
         downloadCSV();
-        clearDataLocally();
-        updateFormEntries();
     });
 });
