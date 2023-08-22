@@ -21,6 +21,11 @@
         <input type="number" id="team" min="0" max="9999" required>
         <br><br>
 
+        <label for="match">Match (0-100):</label>
+        <input type="number" id="team" min="0" max="100" required>
+        <br><br>
+
+
         <h2>Auto</h2>
         <label><input type="radio" name="start_pos" value="flat" required>Flat</label>
         <label><input type="radio" name="start_pos" value="bump">Bump</label>
@@ -93,10 +98,42 @@
         <label><input type="checkbox" name="cube_intake" value="ground">Ground</label>
         <label><input type="checkbox" name="cube_intake" value="single">Single Substation</label>
         <label><input type="checkbox" name="cube_intake" value="double">Double Substation</label>
-
         <br><br>
+
+        <label for="cone_high_t">Cone High:</label>
+        <input type="number" id="cone_high_t" min="0" max="6" required>
+        <label for="cone_high_t">Cone High:</label>
+        <input type="number" id="cone_mid_t" min="0" max="6" required>
+        <label for="cone_high_t">Cone High:</label>
+        <input type="number" id="cone_low_t" min="0" max="9" required>      
+        <br>
+        <label for="cube_high_t">Cone High:</label>
+        <input type="number" id="cube_high_t" min="0" max="4" required>
+        <label for="cube_mid_t">Cone High:</label>
+        <input type="number" id="cube_mid_t" min="0" max="4" required>
+        <label for="cone_low_t">Cone High:</label>
+        <input type="number" id="cube_low_t" min="0" max="9" required>  
+        <br><br>
+
+        <label>Charging Station:</label>
+        <label><input type="radio" name="t_charge" value="yes">Yes</label>
+        <label><input type="radio" name="t_charge" value="no">No</label>
     
         <br> <br>
+
+        <h2>End Game</h2>
+        <label> Park: </label>
+        <label> <input type="radio", name="Yes", value="0" required checked> No </label>
+        <label> <input type="radio", name="No", value="1">Yes</label>
+        <br> <br>
+
+        <label> End Game Charge: </label>
+        <label> <input type="radio", name="Null", value="0" required checked>No</label>
+        <label> <input type="radio", name="Docked", value="1">Docked</label>
+        <label> <input type="radio", name="Engaged", value="2">Engaged</label>
+        <br><br>
+
+
 
         <button type="submit">Submit</button>
     </form>
