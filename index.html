@@ -16,15 +16,23 @@
         <label><input type="radio" name="teamColor" value="red2">Red 2</label>
         <label><input type="radio" name="teamColor" value="red3">Red 3</label>
         <br><br>
+
         <label for="team">Team (0-9999):</label>
         <input type="number" id="team" min="0" max="9999" required>
         <br><br>
+
+        <label for="match">Match (0-100):</label>
+        <input type="number" id="team" min="0" max="100" required>
+        <br><br>
+
+
         <h2>Auto</h2>
         <label><input type="radio" name="start_pos" value="flat" required>Flat</label>
         <label><input type="radio" name="start_pos" value="bump">Bump</label>
         <label><input type="radio" name="start_pos" value="charge">Charge</label>
         <label><input type="radio" name="start_pos" value="other">Other</label>
         <br><br>
+
         <h2>Scoring</h2>
         <label>Cone High:</label>
         <label><input type="radio" name="cone_high" value="0" required checked>0</label>
@@ -32,44 +40,107 @@
         <label><input type="radio" name="cone_high" value="2">2</label>
         <label><input type="radio" name="cone_high" value="3">3</label>
         <br><br>
+
         <label>Cone Mid:</label>
         <label><input type="radio" name="cone_mid" value="0" required checked>0</label>
         <label><input type="radio" name="cone_mid" value="1">1</label>
         <label><input type="radio" name="cone_mid" value="2">2</label>
         <label><input type="radio" name="cone_mid" value="3">3</label>
         <br><br>
+
         <label>Cone Low:</label>
         <label><input type="radio" name="cone_low" value="0" required checked>0</label>
         <label><input type="radio" name="cone_low" value="1">1</label>
         <label><input type="radio" name="cone_low" value="2">2</label>
         <label><input type="radio" name="cone_low" value="3">3</label>
         <br><br>
+
         <label>Cube High:</label>
         <label><input type="radio" name="cube_high" value="0" required checked>0</label>
         <label><input type="radio" name="cube_high" value="1">1</label>
         <label><input type="radio" name="cube_high" value="2">2</label>
         <label><input type="radio" name="cube_high" value="3">3</label>
         <br><br>
+        
+
         <label>Cube Mid:</label>
         <label><input type="radio" name="cube_mid" value="0" required checked>0</label>
         <label><input type="radio" name="cube_mid" value="1">1</label>
         <label><input type="radio" name="cube_mid" value="2">2</label>
         <label><input type="radio" name="cube_mid" value="3">3</label>
         <br><br>
+
         <label>Cube Low:</label>
         <label><input type="radio" name="cube_low" value="0" required checked>0</label>
         <label><input type="radio" name="cube_low" value="1">1</label>
         <label><input type="radio" name="cube_low" value="2">2</label>
         <label><input type="radio" name="cube_low" value="3">3</label>
         <br><br>
+
+        <label> Charge: </label>
+        <label> <input type="radio", name="null", value="0" required checked>0</label>
+        <label> <input type="radio", name="docked", value="1">1</label>
+        <label> <input type="radio", name="engaged", value="2">2</label>
+        <br><br>
+
         <label>Mobility:</label>
         <label><input type="radio" name="mobility" value="yes" required>Yes</label>
         <label><input type="radio" name="mobility" value="no">No</label>
         <br><br>
 
+        <h2>Teleop</h2>
+        <label>Cone Intake</label>
+        <label><input type="checkbox" name="cone_intake" value="ground">Ground</label>
+        <label><input type="checkbox" name="cone_intake" value="single">Single Substation</label>
+        <label><input type="checkbox" name="cone_intake" value="double">Double Substation</label>
+        <br>
+        <label>Cube Intake</label>
+        <label><input type="checkbox" name="cube_intake" value="ground">Ground</label>
+        <label><input type="checkbox" name="cube_intake" value="single">Single Substation</label>
+        <label><input type="checkbox" name="cube_intake" value="double">Double Substation</label>
+        <br><br>
+
+        <label for="cone_high_t">Cone High:</label>
+        <input type="number" id="cone_high_t" min="0" max="6" required>
+        <label for="cone_high_t">Cone High:</label>
+        <input type="number" id="cone_mid_t" min="0" max="6" required>
+        <label for="cone_high_t">Cone High:</label>
+        <input type="number" id="cone_low_t" min="0" max="9" required>      
+        <br>
+        <label for="cube_high_t">Cone High:</label>
+        <input type="number" id="cube_high_t" min="0" max="4" required>
+        <label for="cube_mid_t">Cone High:</label>
+        <input type="number" id="cube_mid_t" min="0" max="4" required>
+        <label for="cone_low_t">Cone High:</label>
+        <input type="number" id="cube_low_t" min="0" max="9" required>  
+        <br><br>
+
+        <label>Charging Station:</label>
+        <label><input type="radio" name="t_charge" value="yes">Yes</label>
+        <label><input type="radio" name="t_charge" value="no">No</label>
+    
+        <br> <br>
+
+        <h2>End Game</h2>
+        <label> Park: </label>
+        <label> <input type="radio", name="Yes", value="0" required checked> No </label>
+        <label> <input type="radio", name="No", value="1">Yes</label>
+        <br> <br>
+
+        <label> End Game Charge: </label>
+        <label> <input type="radio", name="Null", value="0" required checked>No</label>
+        <label> <input type="radio", name="Docked", value="1">Docked</label>
+        <label> <input type="radio", name="Engaged", value="2">Engaged</label>
+        <br><br>
+
+
+
         <button type="submit">Submit</button>
     </form>
     <br>
+
+
+
     <a href="#" id="downloadLink" style="display: true;">Download Form Data</a>
     <div id="formEntries"></div>
 
